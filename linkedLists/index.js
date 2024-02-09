@@ -76,12 +76,36 @@ class LinkedList {
 
 		return temp;
 	}
+
+	get(index) {
+		if (index < 0 || index >= this.length) {
+			return undefined;
+		}
+
+		let temp = this.head;
+		for (let i = 0; i < index; i++) {
+			temp = temp.next;
+		}
+		return temp;
+	}
+
+	set(index, value) {
+		let temp = this.get(index);
+		if (temp) {
+			temp.value = value;
+			return true;
+		}
+		return false;
+	}
 }
 
 const list = new LinkedList(1);
 list.push(2);
 list.push(3);
-list.shift();
-list.shift();
+list.push(4);
+list.push(5);
+list.push(6);
+list.set(0, 100);
+list.set(1, 200);
 
 console.log(list);
