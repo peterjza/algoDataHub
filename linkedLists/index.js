@@ -110,6 +110,21 @@ class LinkedList {
 		this.length++;
 		return true;
 	}
+
+	remove(index) {
+		if (index === 0) return this.shift(value);
+		if (index === this.length - 1) this.pop(value);
+		if (index < 0 || index >= this.length) return undefined;
+
+		const before = this.get(index - 1);
+		const temp = before.next;
+
+		before.next = temp.next;
+		temp.next = null;
+
+		this.length--;
+		return temp;
+	}
 }
 
 const list = new LinkedList(1);
