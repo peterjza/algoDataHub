@@ -142,6 +142,47 @@ class LinkedList {
 
 		return this;
 	}
+
+	findMiddleNode() {
+		let slow = this.head;
+		let fast = this.head;
+
+		while (fast !== null && fast.next !== null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return slow;
+	}
+
+	hasLoop() {
+		let slow = this.head;
+		let fast = this.head;
+
+		while (fast !== null && fast.next !== null) {
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast) return true;
+		}
+
+		return false;
+	}
+
+	findKthFromEnd(k) {
+		let fast = this.head;
+		let slow = this.head;
+
+		for (let i = 0; i < k; i++) {
+			if (fast === null) return null;
+			fast = fast.next;
+		}
+
+		while (fast !== null) {
+			fast = fast.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
 }
 
 const list = new LinkedList(1);
